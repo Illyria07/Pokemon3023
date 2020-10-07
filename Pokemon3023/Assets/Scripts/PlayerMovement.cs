@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float speed = 5;
 
+    [SerializeField]
+    Rigidbody2D rigidBody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        movementVector *= Time.deltaTime * speed;
-        transform.Translate(movementVector);
+        movementVector *= speed;
+        rigidBody.velocity = movementVector;
     }
 
     //if (Input.GetKey(KeyCode.UpArrow))
