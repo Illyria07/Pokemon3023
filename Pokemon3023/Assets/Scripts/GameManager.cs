@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    private static GameManager instance;
+    private GameManager()
+    { }
 
-    // Update is called once per frame
-    void Update()
+    public static GameManager Instance()
     {
-        
+        if (instance == null)
+            instance = new GameManager();
+
+        return instance;
     }
 
     public void ChangeScene(int i)
