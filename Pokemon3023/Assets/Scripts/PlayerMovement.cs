@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     Animator anim;
-    PlayerStats playerStats;
 
     [SerializeField]
     float speed = 5;
@@ -18,12 +17,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-
         anim = GetComponent<Animator>();
-        playerStats = GetComponent<PlayerStats>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     // Update is called once per frame
@@ -36,16 +33,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "EncounterScene")
+        if (scene.name != "EncounterScene")
         {
-            transform.position = new Vector3(0, 0, -20);
-            // Main Camera is the object at index 0
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
-        else
-        {
-            transform.position = playerStats.lastPosition;
+            transform.position = PlayerStats.Instance().LastPosition;
             transform.GetChild(0).gameObject.SetActive(true);
         }
+    }
+    
+    public void OnSceneUnloaded(Scene scene)
+    {
+        PlayerStats.Instance().sceneIndex = scene.buildIndex;
+        PlayerStats.Instance().LastPosition = transform.position;
     }
 }
