@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 lastPosition;
 
-    // Update is called once per frame
-    void Update()
+    public int currentHealth;
+    public int maxHealth;
+
+    public int currentStamina;
+    public int maxStamina;
+
+    public void SetLastPosition()
     {
-        
+        lastPosition = gameObject.transform.position;
     }
 }

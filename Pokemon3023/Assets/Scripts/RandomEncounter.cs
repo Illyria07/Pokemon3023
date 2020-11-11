@@ -23,8 +23,11 @@ public class RandomEncounter : MonoBehaviour
     private void EncounterEvent()
     {
         int r = Random.Range(0, 100);
-        if (r <= 33)
-            Debug.Log("Random Encounter Occured!");
+        if (r <= 25)
+        {
+            FindObjectOfType<PlayerStats>().SetLastPosition();
+            GameManager.Instance().ChangeScene(2);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

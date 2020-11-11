@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     Animator anim;
+    PlayerStats playerStats;
 
     [SerializeField]
     float speed = 5;
@@ -16,7 +18,12 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         anim = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Update is called once per frame
@@ -27,11 +34,18 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = movementVector;
     }
 
-    //if (Input.GetKey(KeyCode.UpArrow))
-    //    {
-    //        transform.position = new Vector3(transform.position.x, transform.position.y + speed, transform.position.z);
-    //        anim.SetBool("isWalking", true);
-    //        anim.SetInteger("playerDir", 0);
-    //    }
-
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "EncounterScene")
+        {
+            transform.position = new Vector3(0, 0, -20);
+            // Main Camera is the object at index 0
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.position = playerStats.lastPosition;
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
 }
