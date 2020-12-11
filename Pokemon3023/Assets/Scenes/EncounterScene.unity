@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 222286781}
   - component: {fileID: 222286783}
   - component: {fileID: 222286782}
+  - component: {fileID: 222286784}
   m_Layer: 5
   m_Name: Player Panel
   m_TagString: Untagged
@@ -401,6 +402,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222286780}
   m_CullTransparentMesh: 0
+--- !u!114 &222286784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222286780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a5c1fbc7e65d84ebf888cd49cc92c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partyName: Player
+  health: 0
+  isPlayer: 1
+  nameText: {fileID: 773681422}
+  healthText: {fileID: 1330291158}
+  oppList: {fileID: 0}
 --- !u!1 &284000670
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,10 +739,9 @@ MonoBehaviour:
   OnFleeingBattle:
     m_PersistentCalls:
       m_Calls: []
+  player: {fileID: 222286784}
+  opponent: {fileID: 2031627224}
   optionPanel: {fileID: 2120756736}
-  playerHealth: {fileID: 773681422}
-  opponentName: {fileID: 1944318423}
-  opponentHealth: {fileID: 1944318423}
 --- !u!4 &461227802
 Transform:
   m_ObjectHideFlags: 0
@@ -2274,6 +2292,7 @@ GameObject:
   - component: {fileID: 2031627221}
   - component: {fileID: 2031627223}
   - component: {fileID: 2031627222}
+  - component: {fileID: 2031627224}
   m_Layer: 5
   m_Name: Opponent Panel
   m_TagString: Untagged
@@ -2341,6 +2360,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031627220}
   m_CullTransparentMesh: 0
+--- !u!114 &2031627224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031627220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a5c1fbc7e65d84ebf888cd49cc92c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  partyName: 
+  health: 0
+  isPlayer: 0
+  nameText: {fileID: 1944318423}
+  healthText: {fileID: 1399628257}
+  oppList: {fileID: 0}
 --- !u!1 &2099533041
 GameObject:
   m_ObjectHideFlags: 0

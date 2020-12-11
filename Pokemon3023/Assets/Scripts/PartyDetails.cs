@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartyDetails : MonoBehaviour
 {
-    public EncounterManager encounterManager;
-
     [Header("Basic Details")]
     public string partyName;
     public int health;
     public bool isPlayer;
 
-    [Header("Opponent Specific Details")]
-    public OpponentListScriptable oppList;
-
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
+
+    [Header("Opponent Specific Details")]
+    public Image oppSprite;
+    public OpponentListScriptable oppList;
+    public OpponentScriptable currentOpponent;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,11 @@ public class PartyDetails : MonoBehaviour
             health = GameStats.Instance().currentHealth;
         else
         {
-            // Opponent setup
+            currentOpponent = oppList.RandomOpponent();
+            oppSprite.sprite = currentOpponent.oppSprite;
+            partyName = currentOpponent.oppName;
+            health = Random.Range(currentOpponent.minHealth, 40);
+            nameText.text = partyName;
         }
         healthText.text = "Grade: " + HealthToGrade(health);
     }

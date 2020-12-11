@@ -9,6 +9,6 @@ public class OpponentListScriptable : ScriptableObject
 
     public OpponentScriptable RandomOpponent()
     {
-        return opponentList[Random.Range(0, opponentList.Count - 1)];
+        return opponentList[Random.Range(0, opponentList.Count - 2)];
     }
 }
