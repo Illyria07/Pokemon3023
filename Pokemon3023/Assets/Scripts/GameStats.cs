@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PlayerStats
+public class GameStats
 {
-    private static PlayerStats instance;
-    private PlayerStats()
+    private static GameStats instance;
+    private GameStats()
     { }
 
-    public static PlayerStats Instance()
+    public static GameStats Instance()
     {
         if (instance == null)
-            instance = new PlayerStats();
+            instance = new GameStats();
 
         return instance;
     }

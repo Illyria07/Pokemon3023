@@ -34,6 +34,6 @@ public class EncounterManager : MonoBehaviour
 
     public void onClickedFlee()
     {
-        SceneManager.LoadScene(PlayerStats.Instance().sceneIndex);
+        SceneManager.LoadScene(GameStats.Instance().sceneIndex);
     }
 }

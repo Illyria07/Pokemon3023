@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpponentScriptable : MonoBehaviour
+[CreateAssetMenu(fileName = "Opponent", menuName = "ScriptableObjects/OpponentScriptables/Opponent", order = 1)]
+public class OpponentScriptable : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string oppName;
+    [Tooltip("Enemy health is randomized between minHealth and 40")]
+    public int minHealth;
+    public Sprite oppSprite;
 }

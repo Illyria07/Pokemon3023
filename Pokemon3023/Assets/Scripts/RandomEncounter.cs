@@ -25,7 +25,7 @@ public class RandomEncounter : MonoBehaviour
         int r = Random.Range(0, 100);
         if (r <= 25)
         {
-            PlayerStats.Instance().LastPosition = player.transform.position;
+            GameStats.Instance().LastPosition = player.transform.position;
             GameManager.Instance().ChangeScene(2);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Damage type ability effect scriptable object
 /// </summary>
-[CreateAssetMenu(fileName = "DamageEffect", menuName = "ScriptableObjects/DamageEffectScriptables", order = 2)]
+[CreateAssetMenu(fileName = "DamageEffect", menuName = "ScriptableObjects/ActionScriptables/DamageEffect", order = 2)]
 public class DamageEffectScriptable : ActionEffectScriptable
 {
     public int damage;

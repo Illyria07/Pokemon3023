@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Action", menuName = "ScriptableObjects/ActionScriptables", order = 1)]
+[CreateAssetMenu(fileName = "Action", menuName = "ScriptableObjects/ActionScriptables/Action", order = 1)]
 public class ActionScriptable : ScriptableObject
 {
     public string abilityName;

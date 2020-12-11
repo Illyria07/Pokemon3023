@@ -35,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (scene.name != "EncounterScene")
         {
-            transform.position = PlayerStats.Instance().LastPosition;
+            transform.position = GameStats.Instance().LastPosition;
             transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     
     public void OnSceneUnloaded(Scene scene)
     {
-        PlayerStats.Instance().sceneIndex = scene.buildIndex;
-        PlayerStats.Instance().LastPosition = transform.position;
+        GameStats.Instance().sceneIndex = scene.buildIndex;
+        GameStats.Instance().LastPosition = transform.position;
     }
 }

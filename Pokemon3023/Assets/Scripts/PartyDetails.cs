@@ -7,9 +7,13 @@ public class PartyDetails : MonoBehaviour
 {
     public EncounterManager encounterManager;
 
+    [Header("Basic Details")]
     public string partyName;
     public int health;
     public bool isPlayer;
+
+    [Header("Opponent Specific Details")]
+    public OpponentListScriptable oppList;
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
@@ -20,7 +24,11 @@ public class PartyDetails : MonoBehaviour
         nameText.text = partyName;
 
         if (isPlayer)
-            health = PlayerStats.Instance().currentHealth;
+            health = GameStats.Instance().currentHealth;
+        else
+        {
+            // Opponent setup
+        }
         healthText.text = "Grade: " + HealthToGrade(health);
     }
 
