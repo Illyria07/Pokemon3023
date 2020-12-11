@@ -14,6 +14,9 @@ public class PartyDetails : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
 
+    [Header("Player Specific Details")]
+    public ActionScriptable[] actionOptions = new ActionScriptable[3];
+
     [Header("Opponent Specific Details")]
     public Image oppSprite;
     public OpponentListScriptable oppList;

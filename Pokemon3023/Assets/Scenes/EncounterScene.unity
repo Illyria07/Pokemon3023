@@ -419,7 +419,9 @@ MonoBehaviour:
   isPlayer: 1
   nameText: {fileID: 773681422}
   healthText: {fileID: 1330291158}
+  oppSprite: {fileID: 0}
   oppList: {fileID: 0}
+  currentOpponent: {fileID: 0}
 --- !u!1 &284000670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2377,7 +2379,9 @@ MonoBehaviour:
   isPlayer: 0
   nameText: {fileID: 1944318423}
   healthText: {fileID: 1399628257}
-  oppList: {fileID: 0}
+  oppSprite: {fileID: 332983823}
+  oppList: {fileID: 11400000, guid: 2f8b240e643f4d44786b798020fe5329, type: 2}
+  currentOpponent: {fileID: 0}
 --- !u!1 &2099533041
 GameObject:
   m_ObjectHideFlags: 0

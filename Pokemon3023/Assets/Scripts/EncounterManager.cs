@@ -27,7 +27,7 @@ public class EncounterManager : MonoBehaviour
     }
 
     /* ----- Buttons Functions ----- */
-    public void onClickedAction()
+    public void onClickedAction(int i)
     {
         
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ActionScriptable : ScriptableObject
 {
     public string abilityName;
-    List<ActionEffectScriptable> effects;
+    public List<ActionEffectScriptable> effects;
 
     public void UseAbility(PartyDetails user, PartyDetails opponent)
     {
