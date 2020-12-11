@@ -32,9 +32,6 @@ public class PlayerStats
         }
     }
 
-    public int currentHealth = 100;
-    public int maxHealth = 100;
-
-    public int currentStamina = 100;
-    public int maxStamina = 100;
+    public int currentHealth = 40;
+    public int maxHealth = 40;
 }
