@@ -411,17 +411,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 222286780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a5c1fbc7e65d84ebf888cd49cc92c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f4f126179000a84b84f0bcfef79e2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   partyName: Player
   health: 0
-  isPlayer: 1
   nameText: {fileID: 773681422}
   healthText: {fileID: 1330291158}
-  oppSprite: {fileID: 0}
-  oppList: {fileID: 0}
-  currentOpponent: {fileID: 0}
+  actionOptions:
+  - {fileID: 11400000, guid: 76074d532300a8043ac1dd5a255e2ae0, type: 2}
+  - {fileID: 11400000, guid: 875f025140a09634c88a2ac2e929a6ea, type: 2}
+  - {fileID: 11400000, guid: 817f84a742f56de44bbfccc517e940ee, type: 2}
 --- !u!1 &284000670
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461227802}
   - component: {fileID: 461227801}
+  - component: {fileID: 461227803}
   m_Layer: 0
   m_Name: Encounter Manager
   m_TagString: Untagged
@@ -735,14 +736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53adc38c0e7e21a4cb135d9bb60ccf70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnActionUsed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnFleeingBattle:
-    m_PersistentCalls:
-      m_Calls: []
-  player: {fileID: 222286784}
-  opponent: {fileID: 2031627224}
+  msgManager: {fileID: 461227803}
+  parties:
+  - {fileID: 222286784}
+  - {fileID: 2031627224}
   optionPanel: {fileID: 2120756736}
 --- !u!4 &461227802
 Transform:
@@ -758,6 +755,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &461227803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461227800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2c1c120aba80846843b4af2e63eefa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 118451884}
+  textSpeed: 15
 --- !u!1 &544467724
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +850,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 544467727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 461227801}
+        m_TargetAssemblyTypeName: EncounterManager, Assembly-CSharp
+        m_MethodName: OnButtonAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &544467727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,8 +1119,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 461227801}
         m_TargetAssemblyTypeName: EncounterManager, Assembly-CSharp
-        m_MethodName: onClickedFlee
-        m_Mode: 1
+        m_MethodName: OnButtonAction
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1632,8 +1655,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -75, y: 14}
-  m_SizeDelta: {x: 125, y: 28}
+  m_AnchoredPosition: {x: -62.5, y: 18.5}
+  m_SizeDelta: {x: 150, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1330291158
 MonoBehaviour:
@@ -1841,8 +1864,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63, y: -45}
-  m_SizeDelta: {x: 125, y: 28}
+  m_AnchoredPosition: {x: 75, y: -45}
+  m_SizeDelta: {x: 150, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1399628257
 MonoBehaviour:
@@ -2025,12 +2048,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 461227801}
         m_TargetAssemblyTypeName: EncounterManager, Assembly-CSharp
-        m_MethodName: onClickedFlee
-        m_Mode: 1
+        m_MethodName: OnButtonAction
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2371,12 +2394,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031627220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a5c1fbc7e65d84ebf888cd49cc92c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a1d976c800ecbe4299ad9b38a452892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   partyName: 
   health: 0
-  isPlayer: 0
   nameText: {fileID: 1944318423}
   healthText: {fileID: 1399628257}
   oppSprite: {fileID: 332983823}
@@ -2463,19 +2485,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2099533044}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 461227801}
-        m_TargetAssemblyTypeName: EncounterManager, Assembly-CSharp
-        m_MethodName: onClickedFlee
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2099533044
 MonoBehaviour:
   m_ObjectHideFlags: 0

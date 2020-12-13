@@ -9,36 +9,20 @@ public class PartyDetails : MonoBehaviour
     [Header("Basic Details")]
     public string partyName;
     public int health;
-    public bool isPlayer;
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
 
-    [Header("Player Specific Details")]
-    public ActionScriptable[] actionOptions = new ActionScriptable[3];
-
-    [Header("Opponent Specific Details")]
-    public Image oppSprite;
-    public OpponentListScriptable oppList;
-    public OpponentScriptable currentOpponent;
-
     // Start is called before the first frame update
     void Start()
     {
-        nameText.text = partyName;
-
-        if (isPlayer)
-            health = GameStats.Instance().currentHealth;
-        else
-        {
-            currentOpponent = oppList.RandomOpponent();
-            oppSprite.sprite = currentOpponent.oppSprite;
-            partyName = currentOpponent.oppName;
-            health = Random.Range(currentOpponent.minHealth, 40);
-            nameText.text = partyName;
-        }
-        healthText.text = "Grade: " + HealthToGrade(health);
+        
     }
+
+    public virtual void TakeTurn()
+    { }
+    public virtual void TakeTurn(int oppHealth)
+    { }
 
     public void ModifyHealth(int damage)
     {
@@ -46,7 +30,7 @@ public class PartyDetails : MonoBehaviour
         healthText.text = "Grade: " + HealthToGrade(health);
     }
 
-    private string HealthToGrade(int health)
+    protected string HealthToGrade(int health)
     {
         string grade = "";
 

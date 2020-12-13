@@ -12,7 +12,7 @@ public class ActionScriptable : ScriptableObject
     {
         foreach (ActionEffectScriptable eff in effects)
         {
-
+            eff.ApplyEffect(user, opponent);
         }
     }
 }
