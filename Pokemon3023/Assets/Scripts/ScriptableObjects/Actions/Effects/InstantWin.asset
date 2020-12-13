@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0772d1e5154fd6a4a9a77f4aa22ad7d5, type: 3}
-  m_Name: Struggle
+  m_Script: {fileID: 11500000, guid: c66f5160fc5acbe46ba2619abd81149a, type: 3}
+  m_Name: InstantWin
   m_EditorClassIdentifier: 
-  abilityName: Struggle
-  effects:
-  - {fileID: 11400000, guid: 0dba450358462324ab95ba5c42d5e7aa, type: 2}
-  - {fileID: 11400000, guid: d480986afed40284e8116961db007324, type: 2}
+  target: 1
+  damage: 100
+  chance: 5

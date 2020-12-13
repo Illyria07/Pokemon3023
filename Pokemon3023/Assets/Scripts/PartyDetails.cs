@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PartyDetails : MonoBehaviour
 {
+    public UnityEvent<string, string> OnTurnTaken;
+
     [Header("Basic Details")]
     public string partyName;
     public int health;
+    public ActionScriptable[] actionOptions = new ActionScriptable[4];
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI healthText;
@@ -21,12 +25,13 @@ public class PartyDetails : MonoBehaviour
 
     public virtual void TakeTurn()
     { }
-    public virtual void TakeTurn(int oppHealth)
+    public virtual void TakeTurn(PartyDetails opponent)
     { }
 
     public void ModifyHealth(int damage)
     {
         health -= damage;
+        health = Mathf.Max(Mathf.Min(health, 40), 0);
         healthText.text = "Grade: " + HealthToGrade(health);
     }
 

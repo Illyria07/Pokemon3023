@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Test
+  m_text: Battle!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -414,14 +414,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4f126179000a84b84f0bcfef79e2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTurnTaken:
+    m_PersistentCalls:
+      m_Calls: []
   partyName: Player
   health: 0
-  nameText: {fileID: 773681422}
-  healthText: {fileID: 1330291158}
   actionOptions:
   - {fileID: 11400000, guid: 76074d532300a8043ac1dd5a255e2ae0, type: 2}
   - {fileID: 11400000, guid: 875f025140a09634c88a2ac2e929a6ea, type: 2}
   - {fileID: 11400000, guid: 817f84a742f56de44bbfccc517e940ee, type: 2}
+  nameText: {fileID: 773681422}
+  healthText: {fileID: 1330291158}
 --- !u!1 &284000670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,8 +2400,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1d976c800ecbe4299ad9b38a452892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTurnTaken:
+    m_PersistentCalls:
+      m_Calls: []
   partyName: 
   health: 0
+  actionOptions:
+  - {fileID: 11400000, guid: dc9272004f3c2ad46a0848c1c6765d54, type: 2}
+  - {fileID: 11400000, guid: be37128f12f1fe147921fea1b0ba61c1, type: 2}
+  - {fileID: 11400000, guid: 18133323a4e25874d89e3a81c4f6d818, type: 2}
+  - {fileID: 11400000, guid: fde5338a46aba0b4aaef533014cf7f07, type: 2}
   nameText: {fileID: 1944318423}
   healthText: {fileID: 1399628257}
   oppSprite: {fileID: 332983823}

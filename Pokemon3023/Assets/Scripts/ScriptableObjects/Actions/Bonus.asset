@@ -15,4 +15,4 @@ MonoBehaviour:
   abilityName: Bonus
   effects:
   - {fileID: 11400000, guid: 0dba450358462324ab95ba5c42d5e7aa, type: 2}
-  - {fileID: 11400000, guid: b1c439c955fa03a41934185a0bc11247, type: 2}
+  - {fileID: 11400000, guid: 665bd85ddbc903f4cbaecc1d026a0d20, type: 2}

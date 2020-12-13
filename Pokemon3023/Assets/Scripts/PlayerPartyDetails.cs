@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerPartyDetails : PartyDetails
 {
-    public ActionScriptable[] actionOptions = new ActionScriptable[3];
-
     // Start is called before the first frame update
     void Start()
     {

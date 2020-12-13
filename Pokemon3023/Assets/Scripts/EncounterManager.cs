@@ -24,9 +24,14 @@ public class EncounterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < (parties[0] as PlayerPartyDetails).actionOptions.Length; i++)
+        foreach(PartyDetails p in parties)
         {
-            optionPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = (parties[0] as PlayerPartyDetails).actionOptions[i].abilityName;
+            p.OnTurnTaken.AddListener(OnTurnTakenHandler);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            optionPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = parties[0].actionOptions[i].abilityName;
         }
     }
 
@@ -37,15 +42,20 @@ public class EncounterManager : MonoBehaviour
 
         PartyDetails forWhomTheTurnTolls = parties[(int)phase];
         if((int)phase == 1)
-            forWhomTheTurnTolls.TakeTurn(parties[0].health);
+            forWhomTheTurnTolls.TakeTurn(parties[0]);
         else
             forWhomTheTurnTolls.TakeTurn();
     }
 
     public void OnButtonAction(int i)
     {
-        (parties[0] as PlayerPartyDetails).actionOptions[i].UseAbility(parties[0], parties[1]);
-        StartCoroutine(EndTurn("Player used " + (parties[0] as PlayerPartyDetails).actionOptions[i].abilityName));
+        parties[0].actionOptions[i].UseAbility(parties[0], parties[1]);
+        parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName);
+    }
+
+    public void OnTurnTakenHandler(string name, string ability)
+    {
+        StartCoroutine(EndTurn(name +" used " + ability));
     }
 
     IEnumerator EndTurn(string message)
