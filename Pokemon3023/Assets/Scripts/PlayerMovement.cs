@@ -80,15 +80,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (scene.name == "MainScene")
         {
-            if (PlayerPrefs.HasKey("xPos"))
-            {
-                OnLoadHandler();
-            }
-            else
-            {
-                transform.position = new Vector2(0, -18.5f);
-                //transform.GetChild(0).gameObject.SetActive(true);
-            }
+            hasEncounter = false;
+
+            transform.position = GameStats.Instance().LastPosition;
         }
         else
         {
