@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        
         anim = GetComponent<Animator>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -54,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = GameStats.Instance().LastPosition;
             transform.GetChild(0).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.position = new Vector3(100, 100, 100);
         }
     }
 }

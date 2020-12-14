@@ -41,21 +41,32 @@ public class EncounterManager : MonoBehaviour
         // Player loses
         if(parties[0].health <= 0)
         {
-            msgManager.AnimateText(parties[1].partyName + " has won!");
-
-            // transition out of combat
+            StartCoroutine(DelayLoseEncounter(parties[1].partyName + " has won!"));
         }
         // Player Wins
         else if(parties[1].health <= 0)
         {
-            msgManager.AnimateText(parties[0].partyName + " has won!");
-
-            GameStats.Instance().currentHealth = parties[0].health;
-
-            // transition out of combat
+            StartCoroutine(DelayWinEncounter(parties[0].partyName + " has won!"));
         }
         else
             StartCoroutine(TurnAdvanceRoutine());
+    }
+
+    IEnumerator DelayWinEncounter(string msg)
+    {
+        GameStats.Instance().currentHealth = parties[0].health;
+        
+        yield return msgManager.AnimateText(msg);
+        yield return new WaitForSeconds(2);
+        GameManager.Instance().ChangeScene(1);
+    }
+
+    IEnumerator DelayLoseEncounter(string msg)
+    {
+        yield return msgManager.AnimateText(msg);
+        yield return new WaitForSeconds(2);
+
+        GameStats.Instance().LoadStats();
     }
 
     IEnumerator TurnAdvanceRoutine()
@@ -89,6 +100,11 @@ public class EncounterManager : MonoBehaviour
 
         parties[0].actionOptions[i].UseAbility(parties[0], parties[1]);
         parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName);
+    }
+
+    public void OnFleeButton()
+    {
+        StartCoroutine(DelayWinEncounter("Player has fled!"));
     }
 
     public void OnTurnTakenHandler(string name, string ability)
