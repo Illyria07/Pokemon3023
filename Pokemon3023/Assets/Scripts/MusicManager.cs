@@ -28,6 +28,11 @@ public class MusicManager : MonoBehaviour
         PlayTrack(Track.Battle);
     }
 
+    public void onEncounterEndHandler()
+    {
+        PlayTrack(Track.Overworld);
+    }
+
     public void PlayTrack(MusicManager.Track trackID)
     {
         musicSource.clip = trackList[(int)trackID];

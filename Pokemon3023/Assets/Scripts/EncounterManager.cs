@@ -17,6 +17,8 @@ public class EncounterManager : MonoBehaviour
 {
     public EncounterMessageManager msgManager;
 
+    MusicManager musicM;
+
     EncounterPhase phase;
     public PartyDetails[] parties;
 
@@ -25,7 +27,9 @@ public class EncounterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(PartyDetails p in parties)
+        musicM = FindObjectOfType<MusicManager>();
+
+        foreach (PartyDetails p in parties)
         {
             p.OnTurnTaken.AddListener(OnTurnTakenHandler);
         }
@@ -57,6 +61,7 @@ public class EncounterManager : MonoBehaviour
         GameStats.Instance().currentHealth = parties[0].health;
         
         yield return msgManager.AnimateText(msg);
+        musicM.onEncounterEndHandler();
         yield return new WaitForSeconds(2);
         GameManager.Instance().ChangeScene(1);
     }
@@ -64,8 +69,8 @@ public class EncounterManager : MonoBehaviour
     IEnumerator DelayLoseEncounter(string msg)
     {
         yield return msgManager.AnimateText(msg);
+        musicM.onEncounterEndHandler();
         yield return new WaitForSeconds(2);
-
         GameStats.Instance().LoadStats();
     }
 
