@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Animator anim;
+    public Animator anim;
 
     [SerializeField]
     float speed = 5;
@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
+
         if (!hasEncounter)
         {
             Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
