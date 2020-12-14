@@ -34,7 +34,7 @@ public class EncounterManager : MonoBehaviour
             p.OnTurnTaken.AddListener(OnTurnTakenHandler);
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             optionPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = GameStats.Instance().sourceAbilities[GameStats.Instance().abilityIndices[i]].abilityName;
         }
@@ -71,7 +71,7 @@ public class EncounterManager : MonoBehaviour
         yield return msgManager.AnimateText(msg);
         musicM.onEncounterEndHandler();
         yield return new WaitForSeconds(2);
-        GameStats.Instance().LoadStats();
+        GameStats.Instance().saveLoad.LoadGame();
     }
 
     IEnumerator TurnAdvanceRoutine()

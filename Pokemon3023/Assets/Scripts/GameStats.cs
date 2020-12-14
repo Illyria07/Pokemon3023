@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class GameStats
 {
     public ActionScriptable[] sourceAbilities = new ActionScriptable[4];
-
+    
     private static GameStats instance;
     private GameStats()
     {
@@ -15,6 +15,8 @@ public class GameStats
         sourceAbilities[1] = (ActionScriptable)Resources.Load("Study");
         sourceAbilities[2] = (ActionScriptable)Resources.Load("Cheat");
         sourceAbilities[3] = (ActionScriptable)Resources.Load("Bonus");
+        abilityIndices[0] = 0;
+        abilityIndices[1] = 1;
     }
 
     public static GameStats Instance()
@@ -25,11 +27,7 @@ public class GameStats
         return instance;
     }
 
-
-
-    public UnityEvent OnSaveGame;
-    public UnityEvent OnLoadGame;
-
+    public SaveLoadScript saveLoad;
     public int sceneIndex;
     
     private Vector3 lastPosition;
@@ -57,31 +55,24 @@ public class GameStats
         lastAbility = lastAbility + 1 == 2 ? 0 : lastAbility + 1;
     }
 
-    public void SaveStats()
+    public void SaveLoadHandler()
     {
-        PlayerPrefs.SetFloat("xPos", lastPosition.x);
-        PlayerPrefs.SetFloat("yPos", lastPosition.y);
-        PlayerPrefs.SetFloat("zPos", lastPosition.z);
+        saveLoad.OnSaveGame.AddListener(SaveStats);
+        saveLoad.OnLoadGame.AddListener(LoadStats);
+    }
 
+    void SaveStats()
+    {
         PlayerPrefs.SetInt("health", currentHealth);
 
         PlayerPrefs.SetInt("Ability1", abilityIndices[0]);
         PlayerPrefs.SetInt("Ability2", abilityIndices[1]);
 
-        OnSaveGame.Invoke();
-
         PlayerPrefs.Save();
     }
 
-    public void LoadStats()
+    void LoadStats()
     {
-        if(PlayerPrefs.HasKey("xPos"))
-            lastPosition.x = PlayerPrefs.GetFloat("xPos");
-        if(PlayerPrefs.HasKey("yPos"))
-            lastPosition.y = PlayerPrefs.GetFloat("yPos");
-        if(PlayerPrefs.HasKey("zPos"))
-            lastPosition.z = PlayerPrefs.GetFloat("zPos");
-
         if (PlayerPrefs.HasKey("health"))
             currentHealth = PlayerPrefs.GetInt("health");
 
@@ -91,7 +82,5 @@ public class GameStats
             abilityIndices[1] = PlayerPrefs.GetInt("Ability2");
 
         GameManager.Instance().ChangeScene(1);
-
-        OnLoadGame.Invoke();
     }
 }
