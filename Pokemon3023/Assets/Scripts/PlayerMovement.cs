@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public Animator anim;
+    public MusicManager musicM;
 
     [SerializeField]
     float speed = 5;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
         anim.SetFloat("Vertical", Input.GetAxis("Vertical"));
-
+        
         if (!hasEncounter)
         {
             Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
