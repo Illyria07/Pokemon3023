@@ -104,16 +104,18 @@ public class EncounterManager : MonoBehaviour
         }
 
         parties[0].actionOptions[i].UseAbility(parties[0], parties[1]);
-        parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName);
+        parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName, parties[0].actionOptions[i].actionSFX);
     }
 
     public void OnFleeButton()
     {
+        musicM.PlaySound(6);
         StartCoroutine(DelayWinEncounter("Player has fled!"));
     }
 
-    public void OnTurnTakenHandler(string name, string ability)
+    public void OnTurnTakenHandler(string name, string ability, int sound)
     {
+        musicM.PlaySound(sound);
         StartCoroutine(EndTurn(name +" used " + ability));
     }
 

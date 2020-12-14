@@ -8,13 +8,29 @@ public class MusicManager : MonoBehaviour
     AudioSource musicSource;
 
     [SerializeField]
+    AudioSource soundEffect;
+
+    [SerializeField]
     AudioClip[] trackList;
+
+    [SerializeField]
+    AudioClip[] soundsList;
 
     public enum Track
     {
         Overworld,
         Battle,
         Title
+    }
+
+    public enum Sound
+    {
+        GuessDebug,
+        StudyBreak,
+        CheatPopQuiz,
+        BonusTeach,
+        Struggle,
+        Flee
     }
 
     // Start is called before the first frame update
@@ -37,5 +53,11 @@ public class MusicManager : MonoBehaviour
     {
         musicSource.clip = trackList[(int)trackID];
         musicSource.Play();
+    }
+
+    public void PlaySound(int soundID)
+    {
+        soundEffect.clip = soundsList[(int)soundID];
+        soundEffect.Play();
     }
 }

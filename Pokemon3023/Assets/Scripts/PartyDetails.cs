@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PartyDetails : MonoBehaviour
 {
-    public UnityEvent<string, string> OnTurnTaken;
+    public UnityEvent<string, string, int> OnTurnTaken;
 
     [Header("Basic Details")]
     public string partyName;

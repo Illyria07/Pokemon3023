@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bonus
   m_EditorClassIdentifier: 
   abilityName: Bonus
+  actionSFX: 3
   effects:
   - {fileID: 11400000, guid: 0dba450358462324ab95ba5c42d5e7aa, type: 2}
   - {fileID: 11400000, guid: 665bd85ddbc903f4cbaecc1d026a0d20, type: 2}

@@ -35,6 +35,7 @@ public class OpponentPartyDetails : PartyDetails
          * 3 - Teach        bonus healing
          */
         string abilUsed = "";
+        int soundUsed = 0;
 
         int det = health - opponent.health;
         float rand = Random.Range(0.0f, 100.0f);
@@ -45,11 +46,13 @@ public class OpponentPartyDetails : PartyDetails
             {
                 actionOptions[1].UseAbility(this, opponent);
                 abilUsed = actionOptions[1].abilityName;
+                soundUsed = actionOptions[1].actionSFX;
             }
             else
             {
                 actionOptions[3].UseAbility(this, opponent);
                 abilUsed = actionOptions[3].abilityName;
+                soundUsed = actionOptions[3].actionSFX;
             }
         }
         else if(det >= -9 && det <= -4)
@@ -58,17 +61,20 @@ public class OpponentPartyDetails : PartyDetails
             {
                 actionOptions[1].UseAbility(this, opponent);
                 abilUsed = actionOptions[1].abilityName;
+                soundUsed = actionOptions[1].actionSFX;
             }
             else
             {
                 actionOptions[3].UseAbility(this, opponent);
                 abilUsed = actionOptions[3].abilityName;
+                soundUsed = actionOptions[3].actionSFX;
             }
         }
         else if(det >= 3)
         {
             actionOptions[2].UseAbility(this, opponent);
             abilUsed = actionOptions[2].abilityName;
+            soundUsed = actionOptions[2].actionSFX;
         }
         else
         {
@@ -76,24 +82,28 @@ public class OpponentPartyDetails : PartyDetails
             {
                 actionOptions[0].UseAbility(this, opponent);
                 abilUsed = actionOptions[0].abilityName;
+                soundUsed = actionOptions[0].actionSFX;
             }
             else if(rand <= 60)
             {
                 actionOptions[3].UseAbility(this, opponent);
                 abilUsed = actionOptions[3].abilityName;
+                soundUsed = actionOptions[3].actionSFX;
             }
             else if(rand <= 80)
             {
                 actionOptions[1].UseAbility(this, opponent);
                 abilUsed = actionOptions[1].abilityName;
+                soundUsed = actionOptions[1].actionSFX;
             }
             else
             {
                 actionOptions[2].UseAbility(this, opponent);
                 abilUsed = actionOptions[2].abilityName;
+                soundUsed = actionOptions[2].actionSFX;
             }
         }
 
-        OnTurnTaken.Invoke(partyName, abilUsed);
+        OnTurnTaken.Invoke(partyName, abilUsed, soundUsed);
     }
 }
