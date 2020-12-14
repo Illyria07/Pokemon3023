@@ -6,7 +6,6 @@ public class MainScreenUI : MonoBehaviour
 {
     public GameObject abilityPanel;
     public ActionScriptable[] abils;
-    Queue abilityToggleQueue = new Queue();
 
     public void OnSaveClicked()
     {

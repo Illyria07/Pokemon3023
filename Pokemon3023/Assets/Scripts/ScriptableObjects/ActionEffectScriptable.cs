@@ -14,10 +14,9 @@ public enum Target
 public class ActionEffectScriptable : ScriptableObject
 {
     public Target target;
-    public AudioClip abilitySFX;
 
     public virtual void ApplyEffect(PartyDetails user, PartyDetails opponent)
     {
-        // add music manager call here
+        
     }
 }
