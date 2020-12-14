@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainScreenUI : MonoBehaviour
 {
+    public SaveLoadScript saveLoad;
     public GameObject abilityPanel;
     public GameObject[] abilityToggles;
 
@@ -13,19 +14,23 @@ public class MainScreenUI : MonoBehaviour
 
     private void Start()
     {
+        saveLoad = FindObjectOfType<SaveLoadScript>();
+
+        ResetToggles();
+
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GameStats.Instance().OnLoadGame.AddListener(OnLoadGameHandler);
-        GameStats.Instance().OnSaveGame.AddListener(OnSaveGameHandler);
+        saveLoad.OnSaveGame.AddListener(OnSaveGameHandler);
+        saveLoad.OnLoadGame.AddListener(OnLoadGameHandler);
     }
 
     public void OnSaveClicked()
     {
-        GameStats.Instance().SaveStats();
+        saveLoad.SaveGame();
     }
 
     public void OnLoadClicked()
     {
-        GameStats.Instance().LoadStats();
+        saveLoad.LoadGame();
     }
 
     public void OnAbilitiesClicked()

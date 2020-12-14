@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GameStats.Instance().OnLoadGame.AddListener(OnLoadHandler);
+        gameObject.GetComponent<SaveLoadScript>().OnSaveGame.AddListener(OnSaveHandler);
+        gameObject.GetComponent<SaveLoadScript>().OnLoadGame.AddListener(OnLoadHandler);
     }
 
     // Update is called once per frame
@@ -46,17 +47,48 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnSaveHandler()
+    {
+        GameStats.Instance().LastPosition = transform.position;
+
+        PlayerPrefs.SetFloat("xPos", transform.position.x);
+        PlayerPrefs.SetFloat("yPos", transform.position.y);
+        PlayerPrefs.SetFloat("zPos", transform.position.z);
+    }
+
     void OnLoadHandler()
     {
-        gameObject.transform.position = GameStats.Instance().LastPosition;
+        Vector3 loadPos = new Vector3();
+
+        if (PlayerPrefs.HasKey("xPos"))
+        {
+            loadPos.x = PlayerPrefs.GetFloat("xPos");
+        }
+        if (PlayerPrefs.HasKey("yPos"))
+        {
+            loadPos.y = PlayerPrefs.GetFloat("yPos");
+        }
+        if (PlayerPrefs.HasKey("zPos"))
+        {
+            loadPos.z = PlayerPrefs.GetFloat("zPos");
+        }
+
+        transform.position = loadPos;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "EncounterScene")
+        if (scene.name == "MainScene")
         {
-            transform.position = GameStats.Instance().LastPosition;
-            transform.GetChild(0).gameObject.SetActive(true);
+            if (PlayerPrefs.HasKey("xPos"))
+            {
+                OnLoadHandler();
+            }
+            else
+            {
+                transform.position = new Vector2(0, -18.5f);
+                //transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
         else
         {
