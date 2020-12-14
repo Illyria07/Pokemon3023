@@ -109,7 +109,7 @@ public class EncounterManager : MonoBehaviour
 
     public void OnFleeButton()
     {
-        musicM.PlaySound(6);
+        musicM.PlaySound(5);
         StartCoroutine(DelayWinEncounter("Player has fled!"));
     }
 
