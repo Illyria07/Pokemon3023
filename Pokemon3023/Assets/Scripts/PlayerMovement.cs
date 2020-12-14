@@ -14,21 +14,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Rigidbody2D rigidBody;
 
+    public bool hasEncounter;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        movementVector *= speed;
-        rigidBody.velocity = movementVector;
+        if (!hasEncounter)
+        {
+            Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            movementVector *= speed;
+            rigidBody.velocity = movementVector;
+        }
+        else
+        {
+            rigidBody.velocity = Vector2.zero;
+        }
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -38,11 +46,5 @@ public class PlayerMovement : MonoBehaviour
             transform.position = GameStats.Instance().LastPosition;
             transform.GetChild(0).gameObject.SetActive(true);
         }
-    }
-    
-    public void OnSceneUnloaded(Scene scene)
-    {
-        GameStats.Instance().sceneIndex = scene.buildIndex;
-        GameStats.Instance().LastPosition = transform.position;
     }
 }

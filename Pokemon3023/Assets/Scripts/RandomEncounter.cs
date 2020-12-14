@@ -7,27 +7,24 @@ public class RandomEncounter : MonoBehaviour
 {
     public GameObject player;
     private Vector2 position;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float encounterDelay;
 
     private void EncounterEvent()
     {
         int r = Random.Range(0, 100);
-        if (r <= 25)
+        if (r <= 20)
         {
             GameStats.Instance().LastPosition = player.transform.position;
-            GameManager.Instance().ChangeScene(2);
+            player.GetComponent<PlayerMovement>().hasEncounter = true;
+            Debug.Log("Encounter Encountered!");
+            StartCoroutine(DelayedEncounter());
         }
+    }
+
+    IEnumerator DelayedEncounter()
+    {
+        yield return new WaitForSeconds(encounterDelay);
+        GameManager.Instance().ChangeScene(2);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
