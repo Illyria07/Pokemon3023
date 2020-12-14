@@ -18,6 +18,7 @@ public class GameStats
         return instance;
     }
 
+
     public UnityEvent OnLoadGame;
 
     public int sceneIndex;

@@ -17,6 +17,7 @@ public class GameManager
         return instance;
     }
 
+
     public void ChangeScene(int i)
     {
         SceneManager.LoadScene(i);
