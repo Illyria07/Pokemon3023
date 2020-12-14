@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        GameStats.Instance().OnLoadGame.AddListener(OnLoadHandler);
     }
 
     // Update is called once per frame
@@ -37,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidBody.velocity = Vector2.zero;
         }
+    }
+
+    void OnLoadHandler()
+    {
+        gameObject.transform.position = GameStats.Instance().LastPosition;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)

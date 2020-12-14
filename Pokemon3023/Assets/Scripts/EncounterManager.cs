@@ -38,15 +38,19 @@ public class EncounterManager : MonoBehaviour
 
     public void AdvanceTurn()
     {
+        // Player loses
         if(parties[0].health <= 0)
         {
             msgManager.AnimateText(parties[1].partyName + " has won!");
 
             // transition out of combat
         }
+        // Player Wins
         else if(parties[1].health <= 0)
         {
             msgManager.AnimateText(parties[0].partyName + " has won!");
+
+            GameStats.Instance().currentHealth = parties[0].health;
 
             // transition out of combat
         }
