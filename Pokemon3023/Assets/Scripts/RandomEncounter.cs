@@ -11,6 +11,12 @@ public class RandomEncounter : MonoBehaviour
 
     public MusicManager musicM;
 
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerMovement>().gameObject;
+        musicM = FindObjectOfType<MusicManager>();
+    }
+
     private void EncounterEvent()
     {
         int r = Random.Range(0, 100);

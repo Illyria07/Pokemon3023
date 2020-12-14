@@ -36,7 +36,7 @@ public class EncounterManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            optionPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = parties[0].actionOptions[i].abilityName;
+            optionPanel.transform.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = GameStats.Instance().sourceAbilities[GameStats.Instance().abilityIndices[i]].abilityName;
         }
     }
 
@@ -103,8 +103,8 @@ public class EncounterManager : MonoBehaviour
             optionPanel.transform.GetChild(j).gameObject.GetComponent<Button>().interactable = false;
         }
 
-        parties[0].actionOptions[i].UseAbility(parties[0], parties[1]);
-        parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName, parties[0].actionOptions[i].actionSFX);
+        GameStats.Instance().sourceAbilities[GameStats.Instance().abilityIndices[i]].UseAbility(parties[0], parties[1]);
+        parties[0].OnTurnTaken.Invoke(parties[0].partyName, GameStats.Instance().sourceAbilities[GameStats.Instance().abilityIndices[i]].abilityName, GameStats.Instance().sourceAbilities[GameStats.Instance().abilityIndices[i]].actionSFX);
     }
 
     public void OnFleeButton()
