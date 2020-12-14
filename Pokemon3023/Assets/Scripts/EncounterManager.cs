@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 enum EncounterPhase
 {
@@ -37,18 +38,51 @@ public class EncounterManager : MonoBehaviour
 
     public void AdvanceTurn()
     {
+        if(parties[0].health <= 0)
+        {
+            msgManager.AnimateText(parties[1].partyName + " has won!");
+
+            // transition out of combat
+        }
+        else if(parties[1].health <= 0)
+        {
+            msgManager.AnimateText(parties[0].partyName + " has won!");
+
+            // transition out of combat
+        }
+        else
+            StartCoroutine(TurnAdvanceRoutine());
+    }
+
+    IEnumerator TurnAdvanceRoutine()
+    {
         phase++;
         phase = phase >= EncounterPhase.Count ? 0 : phase;
-
         PartyDetails forWhomTheTurnTolls = parties[(int)phase];
-        if((int)phase == 1)
+
+        yield return msgManager.AnimateText(forWhomTheTurnTolls.partyName + "'s turn!");
+        yield return new WaitForSeconds(1);
+
+        if ((int)phase == 1)
+        {
             forWhomTheTurnTolls.TakeTurn(parties[0]);
+        }
         else
-            forWhomTheTurnTolls.TakeTurn();
+        {
+            for (int i = 0; i < optionPanel.transform.childCount; i++)
+            {
+                optionPanel.transform.GetChild(i).gameObject.GetComponent<Button>().interactable = true;
+            }
+        }
     }
 
     public void OnButtonAction(int i)
     {
+        for (int j = 0; j < optionPanel.transform.childCount; j++)
+        {
+            optionPanel.transform.GetChild(j).gameObject.GetComponent<Button>().interactable = false;
+        }
+
         parties[0].actionOptions[i].UseAbility(parties[0], parties[1]);
         parties[0].OnTurnTaken.Invoke(parties[0].partyName, parties[0].actionOptions[i].abilityName);
     }

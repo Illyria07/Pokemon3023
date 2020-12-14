@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BaseDamage
   m_EditorClassIdentifier: 
   target: 1
-  damage: 3
+  damage: 4
