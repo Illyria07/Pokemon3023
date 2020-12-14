@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OverworldMusic
       objectReference: {fileID: 0}
+    - target: {fileID: 7737223096800811430, guid: b01c7b7ce1283fd4798dd6417d7527f8, type: 3}
+      propertyPath: soundsList.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: dd6ca16f3e55a9e42ad22e75512daa9c, type: 3}
     - target: {fileID: 7737223096800811431, guid: b01c7b7ce1283fd4798dd6417d7527f8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.77989
