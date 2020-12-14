@@ -39,6 +39,15 @@ public class GameStats
     public int currentHealth = 40;
     public int maxHealth = 40;
 
+    ActionScriptable[] abilities = new ActionScriptable[2];
+    int lastAbility = 0; // Can only be 0 or 1
+
+    public void AddAbility(ActionScriptable actScript)
+    {
+        abilities[lastAbility] = actScript;
+        lastAbility = lastAbility + 1 == 2 ? 0 : lastAbility + 1;
+    }
+
     public void SaveStats()
     {
         PlayerPrefs.SetFloat("xPos", lastPosition.x);

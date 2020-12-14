@@ -11,9 +11,12 @@ public enum Target
 /// <summary>
 /// Base script for ability effect scriptable objects
 /// </summary>
-public abstract class ActionEffectScriptable : ScriptableObject
+public class ActionEffectScriptable : ScriptableObject
 {
     public Target target;
 
-    public abstract void ApplyEffect(PartyDetails user, PartyDetails opponent);
+    public virtual void ApplyEffect(PartyDetails user, PartyDetails opponent)
+    {
+        
+    }
 }
