@@ -29,6 +29,8 @@ public class OpponentPartyDetails : PartyDetails
     public override void TakeTurn(PartyDetails opponent)
     {
         /*
+         * Opponent's attacks are all the same as the Player's attacks, just named differently for theming
+         * 
          * 0 - Debug        regular attack
          * 1 - Break        healing move
          * 2 - Pop Quiz     bonus damage
