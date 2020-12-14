@@ -13,6 +13,8 @@ public class BonusDamageEffectScriptable : ActionEffectScriptable
 
     public override void ApplyEffect(PartyDetails user, PartyDetails opponent)
     {
+        base.ApplyEffect(user, opponent);
+
         switch (target)
         {
             case Target.User:

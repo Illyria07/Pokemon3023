@@ -39,9 +39,9 @@ public class OpponentPartyDetails : PartyDetails
         int det = health - opponent.health;
         float rand = Random.Range(0.0f, 100.0f);
 
-        if (det < 0)
+        if (det < -10)
         {
-            if (rand <= 40)
+            if (rand <= 30)
             {
                 actionOptions[1].UseAbility(this, opponent);
                 abilUsed = actionOptions[1].abilityName;
@@ -52,7 +52,7 @@ public class OpponentPartyDetails : PartyDetails
                 abilUsed = actionOptions[3].abilityName;
             }
         }
-        else if(det >= 0 && det <= 4)
+        else if(det >= -9 && det <= -4)
         {
             if (rand <= 25)
             {
@@ -65,7 +65,7 @@ public class OpponentPartyDetails : PartyDetails
                 abilUsed = actionOptions[3].abilityName;
             }
         }
-        else if(det >= 10)
+        else if(det >= 3)
         {
             actionOptions[2].UseAbility(this, opponent);
             abilUsed = actionOptions[2].abilityName;
