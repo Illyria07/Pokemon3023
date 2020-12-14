@@ -9,6 +9,8 @@ public class RandomEncounter : MonoBehaviour
     private Vector2 position;
     public float encounterDelay;
 
+    public MusicManager musicM;
+
     private void EncounterEvent()
     {
         int r = Random.Range(0, 100);
@@ -18,6 +20,7 @@ public class RandomEncounter : MonoBehaviour
             player.GetComponent<PlayerMovement>().hasEncounter = true;
             Debug.Log("Encounter Encountered!");
             StartCoroutine(DelayedEncounter());
+            musicM.onEncounterEnterHandler();
         }
     }
 
